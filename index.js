@@ -36,6 +36,22 @@ function animaster() {
         element.classList.remove('hide');
         element.classList.add('show');
     }
+    obj.resetFadeIn = function (element) {
+        element.style.transitionDuration = null;
+        element.classList.remove('show');
+        element.classList.add('hide');
+    };
+
+    obj.resetFadeOut = function (element) {
+        element.style.transitionDuration = null;
+        element.classList.remove('hide');
+        element.classList.add('show');
+    };
+
+    obj.resetMoveAndScale = function (element) {
+        element.style.transitionDuration = null;
+        element.style.transform = null;
+    };
     return obj;
 }
 

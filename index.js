@@ -31,6 +31,29 @@ function fadeIn(element, duration) {
     element.classList.add('show');
 }
 
+function animaster()
+{
+    const obj = new Object();
+    obj.move = function(element, duration, translation){
+        element.style.transitionDuration = `${duration}ms`;
+        element.style.transform = getTransform(translation, null);
+    }
+    obj.scale = function(element, duration, ratio) {
+        element.style.transitionDuration =  `${duration}ms`;
+        element.style.transform = getTransform(null, ratio);
+    }
+    obj.fadeIn = function(element, duration) {
+        element.style.transitionDuration =  `${duration}ms`;
+        element.classList.remove('hide');
+        element.classList.add('show');
+    }
+}
+
+
+
+
+
+
 /**
  * Функция, передвигающая элемент
  * @param element — HTMLElement, который надо анимировать

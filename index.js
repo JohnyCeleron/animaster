@@ -84,6 +84,25 @@ function animaster() {
         return obj;
     };
 
+    obj.shake = function (element, duration, amplitude) {
+        const steps = 50;
+        const stepDuration = duration / steps;
+
+        let i = 0;
+        function shakeStep() {
+            if (i >= steps) return;
+            const offsetX = (Math.random() * 2 - 1) * amplitude;
+            const offsetY = (Math.random() * 2 - 1) * amplitude;
+            element.style.transitionDuration = `${stepDuration}ms`;
+            element.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            i++;
+            setTimeout(shakeStep, stepDuration);
+        }
+        shakeStep();
+        return obj;
+    };
+
+
     return obj;
 }
 
@@ -117,7 +136,8 @@ function addListeners() {
             animasterInstance.resetFadeIn(fadeInBlock);
         });
 
-    document.getElementById('fadeOutPlay')
+
+        document.getElementById('fadeOutPlay')
         .addEventListener('click', function () {
             animasterInstance.fadeOut(fadeOutBlock, 1000);
         });
@@ -163,6 +183,11 @@ function addListeners() {
         .addEventListener('click', function () {
             const block = document.getElementById('heartBeatingBlock');
             animasterInstance.heartBeating(block);
+        });
+    document.getElementById('shakePlay')
+        .addEventListener('click', function () {
+            const block = document.getElementById('shakeBlock');
+            animasterInstance.shake(block, 1000, 10);
         });
 }
 
